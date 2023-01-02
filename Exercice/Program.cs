@@ -481,9 +481,9 @@ void Exercice15()
 
     Pied *= PiedTT;
 
-    Pied += Pouce;
+    Pied = Pied + Pouce;
 
-    WriteLine(Pied + '\n');
+    WriteLine(Pied-10 + "Pouces\n \n");
 
 }
 
