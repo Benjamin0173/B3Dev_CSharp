@@ -84,16 +84,16 @@ Tableau[1] = new int[] { 34, 34, 4, 67 };
 
 for (int i = 0; i < Tableau[0].Length; i++)
 {
-    Console.WriteLine(Tableau.Length);
-    Console.WriteLine(Tableau[0].Length);
-    Console.WriteLine(Tableau[1].Length);
+    //Console.WriteLine(Tableau.Length);
+    //Console.WriteLine(Tableau[0].Length);
+    //Console.WriteLine(Tableau[1].Length);
     //Console.WriteLine(Tableau[i][0]);
 
 
 
-    for (int b = 0; b < 2; b++)
+    foreach (int j in Tableau[i])
     {
-        ////Console.WriteLine(Tableau[i][b]);
+        Console.WriteLine(j);
     }
 }
 
