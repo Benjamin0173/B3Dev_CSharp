@@ -7,7 +7,7 @@ int i = 0;
 
 do
 {
-    WriteLine("Quelle Exercice voulez vous faire ?\nExercice 1 : Plus Grand Nombre\nExercice 2 : Pass or Fail\nExercice 3 : Find the Good Number\nExercice 4 : Table de Multiplication\nExercice 5 : Produit jusqu'a 1000\nExercice 6 : Tableau qui se fait tout seul\nExercice 7 : Tableau qui se Remplit grace a vous\nExercice 8 : Tableau de Couleur\nExercice 9 : Tableau a Virgule \nExercice 10 : Tableau de 20 Chiffre return 1er divisible par 3 et 5\nExercice 11 : Jour de la Semaine \nExercice 12 : Nbr jour vécu\nExercice 13 :Timer Min et Sec\nExercice 14 :Temperature \nExercice 15 : Taille Pied/Pouce\nExercice 16 :\nExercice 17 :\nExercice 18 :\nExercice 19 :\nExercice 20 :\n21 : Quitter");
+    WriteLine("Quelle Exercice voulez vous faire ?\nExercice 1 : Plus Grand Nombre\nExercice 2 : Pass or Fail\nExercice 3 : Find the Good Number\nExercice 4 : Table de Multiplication\nExercice 5 : Produit jusqu'a 1000\nExercice 6 : Tableau qui se fait tout seul\nExercice 7 : Tableau qui se Remplit grace a vous\nExercice 8 : Tableau de Couleur\nExercice 9 : Tableau a Virgule \nExercice 10 : Tableau de 20 Chiffre return 1er divisible par 3 et 5\nExercice 11 : Jour de la Semaine \nExercice 12 : Nbr jour vécu\nExercice 13 :Timer Min et Sec\nExercice 14 :Temperature \nExercice 15 : Taille Pied/Pouce\nExercice 16 :\nExercice 17 :\nExercice 18 :\nExercice 19 : Mots a l'envers\nExercice 20 : Chiffre aléatoire\n21 : Quitter");
     
     i = Convert.ToInt32(ReadLine());
 
@@ -104,12 +104,12 @@ do
 
         case (19):
             Clear();
-            WriteLine("Exercice n°" + i);
+            Exercice19();
             break;
 
         case (20):
             Clear();
-            WriteLine("Exercice n°" + i);
+            Exercice20();
             break;
     }
     } while (i < 21);
@@ -487,6 +487,37 @@ void Exercice15()
 
 }
 
+//Programmes
+
+
+
+void Exercice19()
+{
+    WriteLine("Mettez un mots a l'envers \n");
+
+
+
+    string chaine = ReadLine();
+    string chaineRenv = string.Concat(chaine.ToCharArray().Reverse());
+
+    WriteLine(chaineRenv +  "\n");
+
+
+}
+
+void Exercice20()
+{
+
+
+
+    Random aleatoire = new Random();
+    int entierUnChiffre = aleatoire.Next(1,101); //Génère un entier compris entre 1 et 100
+
+    WriteLine(entierUnChiffre + " : Chiffre aléatoire\n \n");
+
+
+
+}
 
 
 enum Saison
