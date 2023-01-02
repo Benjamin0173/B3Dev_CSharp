@@ -69,7 +69,11 @@ Console.WriteLine(JourSemaine.Travail);
 Console.WriteLine(JourSemaine.Weekend);
 Console.WriteLine(JourSemaine.Semaine);
 */
+
+// Tableau a 2 Dimension
 int[,] TableauA = new int[1, 2];
+
+//Tableau a 3 Dimension
 int[,,] TableauB = new int[5, 2, 3];
 
 // Expliquer la difference entre ces syntaxes
