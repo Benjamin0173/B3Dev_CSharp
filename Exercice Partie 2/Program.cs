@@ -9,7 +9,7 @@ int i = 0;
 
 do
 {
-    WriteLine("Quelle Exercice voulez vous faire ?\nExercice 1 : Tuture\nExercice 2 : Etudiant\nExercice 3 : Bank\nExercice 4 : Calculatrice\nExercice 5 : Rectangle\nExercice 6 : Tableau qui se fait tout seul\nExercice 7 : Tableau qui se Remplit grace a vous\nExercice 8 : Tableau de Couleur\n         9 : Quitter");
+    WriteLine("Quelle Exercice voulez vous faire ?\nExercice 1 : Tuture\nExercice 2 : Etudiant\nExercice 3 : Bank\nExercice 4 : Calculatrice\nExercice 5 : Rectangle\nExercice 6 : avion/oiseau\nExercice 7 : Animal/Chat/lion\nExercice 8 : des Aires et tout sa\n         9 : Quitter");
 
     i = Convert.ToInt32(ReadLine());
 
@@ -202,20 +202,77 @@ void Exercice5()
     } while (i < 3);
 }
 
+//Classes : héritage et interface
+
 void Exercice6()
 {
+    string nom;
+    int nbmoteur;
+
+    WriteLine("Votre oiseau/nbmoteur avion");
+
+    nom = (ReadLine());
+    nbmoteur = Convert.ToInt32(ReadLine());
+
+    IVolant volant = new IVolant();
+    Oiseau sosio = new Oiseau(nom);
+    Avion avion = new Avion( nbmoteur, nom);
+
+    volant.Voler();
+
+    sosio.Description();
+
+    avion.Description();
+
 
 }
 
 void Exercice7()
 {
+    string nom;
+    float poids;
+
+    WriteLine("Votre nom/poids lion");
+
+    nom = (ReadLine());
+    poids = Convert.ToSingle(ReadLine());
+
+    IAnimal animal = new IAnimal();
+    Chat chat = new Chat(nom);
+    Lion lion = new Lion(poids, nom);
+
+    animal.Crier();
+
+    chat.Description();
+
+    lion.Description();
 
 }
 
 void Exercice8()
 {
+    string couleur;
+    float rayon;
+    float largeur;
+    float hauteur;
 
+    WriteLine("Donner une Couleur/ un rayon / un largeur / une hauteur");
+
+    couleur = (ReadLine());
+    rayon = Convert.ToSingle(ReadLine());
+    largeur = Convert.ToSingle(ReadLine());
+    hauteur = Convert.ToSingle(ReadLine());
+
+    Forme forme = new Forme(couleur);
+    Cercle cercle = new Cercle(rayon, couleur);
+    Rectangles rectangle = new Rectangles(largeur, hauteur, couleur);
+
+    cercle.Description();
+
+    rectangle.Description();
 }
+
+//Studies
 
 class Voiture
 {
@@ -259,7 +316,6 @@ class Etudiant
         WriteLine("Bonjour, je m'appelle " + prenom + " " + nom + " et j'ai " + age + " ans.");
     }
 }
-
 
 class CompteBancaire
 {
@@ -394,5 +450,154 @@ class Rectangle
 
 
         WriteLine(test + "m²");
+    }
+}
+
+//Classes : héritage et interface
+
+class IVolant
+{
+    public void Voler()
+    {
+        WriteLine("Je suis en train de voler!");
+    }
+}
+
+class Oiseau : IVolant
+{
+    public string Nom;
+
+    public Oiseau(string Marque)
+    {
+
+        Nom = Marque;
+
+    }
+
+    public void Description()
+    {
+        WriteLine("Je suis un oiseau de nom" + Nom);
+    }
+}
+
+class Avion : Oiseau
+{
+    public int a;
+
+
+    public Avion(int nbMoteur, string Marque): base(Marque)
+    {
+
+        a = nbMoteur;
+
+    }
+
+    public void Description()
+    {
+        WriteLine("Je suis un avion avec " + a + " moteurs de nom " + this.Nom);
+    }
+}
+
+//
+
+class IAnimal
+{
+    public void Crier()
+    {
+        WriteLine("Roarr");
+    }
+}
+
+class Chat : IAnimal
+{
+    public string Nom;
+
+    public Chat(string Marque)
+    {
+
+        Nom = Marque;
+
+    }
+
+    public void Description()
+    {
+        WriteLine("Je suis un chat de nom " + Nom);
+    }
+}
+
+class Lion : Chat
+{
+    public float a;
+
+
+    public Lion(float poids, string Marque) : base(Marque)
+    {
+
+        a = poids;
+
+    }
+
+    public void Description()
+    {
+        WriteLine("Je suis un lion de " + a + " kg de nom " + this.Nom);
+    }
+}
+
+//
+
+class Forme
+{
+    public string Couleur;
+
+    public Forme(string Marque)
+    {
+        Couleur = Marque;
+    }
+}
+
+class Cercle : Forme
+{
+    public float rayon;
+    public double pi = 3.14159265359;
+
+    public Cercle(float Rayon, string Marque) : base(Marque)
+    {
+
+        rayon = Rayon;
+
+    }
+
+    public void Description()
+    {
+        float result;
+
+        result = ((float)(pi * (rayon*rayon)));
+
+        WriteLine("Le Rayon du cercle est : " + result);
+    }
+}
+
+class Rectangles : Forme
+{
+    public float largeur;
+    public float hauteur;
+
+
+
+    public Rectangles(float Largeur,float Hauteur , string Marque) : base(Marque)
+    {
+
+        largeur = Largeur;
+        hauteur = Hauteur;
+
+    }
+
+    public void Description()
+    {
+        float result;
+
+        result = (hauteur * largeur);
+
+        WriteLine("Le Rayon du Rectangle est : " + result);
     }
 }
