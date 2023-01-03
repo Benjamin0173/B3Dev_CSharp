@@ -7,7 +7,7 @@ int i = 0;
 
 do
 {
-    WriteLine("Quelle Exercice voulez vous faire ?\nExercice 1 : Plus Grand Nombre\nExercice 2 : Pass or Fail\nExercice 3 : Find the Good Number\nExercice 4 : Table de Multiplication\nExercice 5 : Produit jusqu'a 1000\nExercice 6 : Tableau qui se fait tout seul\nExercice 7 : Tableau qui se Remplit grace a vous\nExercice 8 : Tableau de Couleur\nExercice 9 : Tableau a Virgule \nExercice 10 : Tableau de 20 Chiffre return 1er divisible par 3 et 5\nExercice 11 : Jour de la Semaine \nExercice 12 : Nbr jour vécu\nExercice 13 :Timer Min et Sec\nExercice 14 :Temperature \nExercice 15 : Taille Pied/Pouce\nExercice 16 :\nExercice 17 :\nExercice 18 :\nExercice 19 : Mots a l'envers\nExercice 20 : Chiffre aléatoire\n21 : Quitter");
+    WriteLine("Quelle Exercice voulez vous faire ?\nExercice 1 : Plus Grand Nombre\nExercice 2 : Pass or Fail\nExercice 3 : Find the Good Number\nExercice 4 : Table de Multiplication\nExercice 5 : Produit jusqu'a 1000\nExercice 6 : Tableau qui se fait tout seul\nExercice 7 : Tableau qui se Remplit grace a vous\nExercice 8 : Tableau de Couleur\nExercice 9 : Tableau a Virgule \nExercice 10 : Tableau de 20 Chiffre return 1er divisible par 3 et 5\nExercice 11 : Jour de la Semaine \nExercice 12 : Nbr jour vécu\nExercice 13 :Timer Min et Sec\nExercice 14 :Temperature \nExercice 15 : Taille Pied/Pouce\nExercice 16 : Dans Combien d'année aurez vous 100 ans\nExercice 17 : Tableau de Mutiplication\nExercice 18 : Calcule\nExercice 19 : Mots a l'envers\nExercice 20 : Chiffre aléatoire\n21 : Quitter");
     
     i = Convert.ToInt32(ReadLine());
 
@@ -89,17 +89,17 @@ do
 
         case (16):
             Clear();
-            WriteLine("Exercice n°" + i);
+            Exercice16();
             break;
 
         case (17):
             Clear();
-            WriteLine("Exercice n°" + i);
+            Exercice17();
             break;
 
         case (18):
             Clear();
-            WriteLine("Exercice n°" + i);
+            Exercice18();
             break;
 
         case (19):
@@ -268,6 +268,7 @@ void Exercice7()
     WriteLine('\n');
 
 }
+
 void Exercice8()
 {
     string[] Tableau = new string[5];
@@ -466,7 +467,6 @@ void Exercice14()
 
 }
 
-
 void Exercice15()
 {
     int PiedTT = 12;
@@ -489,7 +489,59 @@ void Exercice15()
 
 //Programmes
 
+void Exercice16()
+{
+    int CentAns = 100;
+    string Prenom;
+    int Age;
 
+    WriteLine("Mettez votre Prenom puis votre Age \n");
+
+    Prenom = ReadLine();
+    Age = Convert.ToInt32(ReadLine());
+
+    CentAns -= Age;
+
+    WriteLine("Dans " + CentAns + " ans," + Prenom + " aura 100 ans \n");
+}
+
+void Exercice17()
+{
+
+    for (int i = 1; i <= 9; i++)
+    {
+        for (int j = 1; j <= 9; j++)
+        {
+            Write(i * j + "\t");
+        }
+        Write("\n");
+    }
+}
+
+void Exercice18()
+{
+    string CalculeVirgule;
+    int Resultat = 0;
+
+    WriteLine("Donner autant de chiffre voulu séparer simplement par une virgule");
+
+
+    CalculeVirgule = ReadLine();
+
+    string[] words = CalculeVirgule.Split(',');
+
+
+    for (int i = 0; i < words.Length; i++)
+    {
+        //WriteLine(words[i]);
+
+        Resultat += Int32.Parse(words[i]);
+
+    }
+
+
+    WriteLine(Resultat + "\n");
+}
 
 void Exercice19()
 {
