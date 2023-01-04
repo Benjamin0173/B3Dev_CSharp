@@ -3,13 +3,14 @@ using System.IO;
 using System;
 using static System.Console;
 using System.Reflection;
+using System.Collections.Generic;
 
 int i = 0;
 
 
 do
 {
-    WriteLine("Quelle Exercice voulez vous faire ?\nExercice 1 : Tuture\nExercice 2 : Etudiant\nExercice 3 : Bank\nExercice 4 : Calculatrice\nExercice 5 : Rectangle\nExercice 6 : avion/oiseau\nExercice 7 : Animal/Chat/lion\nExercice 8 : des Aires et tout sa\n         9 : Quitter");
+    WriteLine("Quelle Exercice voulez vous faire ?\nExercice 1 : Tuture\nExercice 2 : Etudiant\nExercice 3 : Bank\nExercice 4 : Calculatrice\nExercice 5 : Rectangle\nExercice 6 : avion/oiseau\nExercice 7 : Animal/Chat/lion\nExercice 8 : des Aires et tout sa\nExercice 9 : Student\nExercice 10 : Dico\n         11 : Quitter");
 
     i = Convert.ToInt32(ReadLine());
 
@@ -53,8 +54,17 @@ do
             Clear();
             Exercice8();
             break;
+
+        case (9):
+            Clear();
+            Exercice9();
+            break;
+        case (10):
+            Clear();
+            Exercice10();
+            break;
     }
-} while (i < 9);
+} while (i < 11);
 
 void Exercice1()
 {
@@ -273,6 +283,155 @@ void Exercice8()
 }
 
 //Studies
+
+void Exercice9()
+{
+    string Prenom;
+    string Nom;
+
+    List<Student> etudiants = new List<Student>
+{
+    new Student("Rey", "Benjamin", 20),
+    new Student("Rey", "Tiffany", 18),
+    new Student("Toccanier", "Gregory", 21),
+    new Student("Beltrami", "Mathis", 17)
+};
+
+    WriteLine("Liste des étudiant : \n\"Rey\", \"Benjamin\", 20\n\"Rey\", \"Tiffany\", 18\n\"Toccanier\", \"Gregory\", 21\n\"Beltrami\", \"Mathis\", 17\n");
+
+
+    Formation formation = new Formation(etudiants);
+
+    // Calculer et afficher la moyenne d'âge des étudiants
+    double moyenne = formation.MoyenneAge();
+    WriteLine(moyenne);  // Affichera "21"
+
+    WriteLine("Quelle Nom voulez vous trouver");
+    Nom = ReadLine();
+
+    Student etudiant = formation.TrouverEtudiant(Nom);
+    if (etudiant != null)
+    {
+        WriteLine(etudiant.NomComplet()); 
+    }
+
+
+    WriteLine("Donner Prenom et Nom trouver l'age de l'étudiant");
+    Prenom = ReadLine();
+    Nom = ReadLine();
+
+    etudiant = formation.TrouverEtudiant(Prenom, Nom);
+    if (etudiant != null)
+    {
+        WriteLine("Cette personne a : ");
+        WriteLine(etudiant.Age);
+    }
+
+    WriteLine("Voici la Liste des étudiant Majeur : ");
+
+    formation.AfficherEtudiantsMajeurs();
+
+    WriteLine("\n");
+
+
+}
+
+//Collections et Types génériques
+
+void Exercice10()
+{
+    List<int> list = new List<int> { 1, 2, 3, 4, 5 };
+    WriteLine("Nombre dans la liste : 1,2,3,4,5\nRésultat : ");
+
+    int sum = SumList(list);
+
+    Pile<int> pileInt = new Pile<int>();
+    pileInt.Push(1);
+    pileInt.Push(2);
+    pileInt.Push(3);
+
+    WriteLine("Résultat du push de 1 ,2 ,3 puis du pop");
+
+    int element = pileInt.Pop();
+    WriteLine(element);
+
+    element = pileInt.Pop();
+    WriteLine(element);
+
+    element = pileInt.Pop();
+    WriteLine(element);
+
+    File<int> fileInt = new File<int>();
+    fileInt.Enqueue(1);
+    fileInt.Enqueue(2);
+    fileInt.Enqueue(3);
+
+    WriteLine("Nombre dans la liste File : 1,2,3 \nGrace a Enqueue\n\nRésultat : ");
+
+    int element1 = fileInt.Dequeue();
+    WriteLine(element1);
+
+    element1 = fileInt.Dequeue();
+    WriteLine(element1);
+
+    element1 = fileInt.Dequeue();
+    WriteLine(element1);
+
+
+    Dictionnaire<string, int> dict = new Dictionnaire<string, int>();
+    dict.Add("Cle1", 1);
+    dict.Add("Cle2", 2);
+    dict.Add("Cle3", 3);
+
+    WriteLine("Nombre dans la liste Dictionnaire :\"Cle1\", 1\"Cle2\", 2 \"Cle3\", 3\nGrace a Add\n\nRésultat : ");
+
+    int value = dict.GetValue("Cle1");
+    WriteLine(value);
+
+    value = dict.GetValue("Cle2");
+    WriteLine(value);
+
+    value = dict.GetValue("Cle3");
+    WriteLine(value);
+
+
+    Dictionary<string, int> dict2 = new Dictionary<string, int>();
+    dict.Add("Cle4", 1);
+    dict.Add("Cle5", 3);
+    dict.Add("Cle6", 2);
+
+    WriteLine("Nombre dans la liste Dictionnaire :\"Cle4\", 1\"Cle5\", 3 \"Cle6\", 2\nGrace a Add\n\nRésultat dans l'ordre numérique: ");
+
+    List<int> values = GetValuesInOrder(dict2); 
+
+    WriteLine(values.Count);
+
+}
+
+
+List<TValue> GetValuesInOrder<TKey, TValue>(Dictionary<TKey, TValue> dictionary)
+{
+    List<TValue> values = new List<TValue>();
+    foreach (KeyValuePair<TKey, TValue> pair in dictionary)
+    {
+        values.Add(pair.Value);
+    }
+    return values;
+}
+
+
+int SumList(List<int> list)
+{
+    int sum = 0;
+    foreach (int num in list)
+    {
+        sum += num;
+    }
+    return sum;
+}
+
+
+//Class
 
 class Voiture
 {
@@ -601,3 +760,151 @@ class Rectangles : Forme
         WriteLine("Le Rayon du Rectangle est : " + result);
     }
 }
+
+//Studies
+
+public class Student
+{
+    public string Nom { get; set; }
+    public string Prenom { get; set; }
+    public int Age { get; set; }
+
+    public Student(string nom, string prenom, int age)
+    {
+        Nom = nom;
+        Prenom = prenom;
+        Age = age;
+    }
+
+    public bool EstMajeur()
+    {
+        return Age >= 18;
+    }
+
+    public string NomComplet()
+    {
+        return Prenom + " " + Nom;
+    }
+}
+
+public class Formation
+{
+    public List<Student> Student { get; set; }
+
+    public Formation(List<Student> etudiants)
+    {
+        Student = etudiants;
+    }
+
+    public double MoyenneAge()
+    {
+        return Student.Average(etudiant => etudiant.Age);
+    }
+
+    public Student TrouverEtudiant(string nom)
+    {
+        return Student.FirstOrDefault(etudiant => etudiant.Nom == nom);
+    }
+
+    public Student TrouverEtudiant(string prenom, string nom)
+    {
+        return Student.FirstOrDefault(etudiant => etudiant.Prenom == prenom && etudiant.Nom == nom);
+    }
+
+    public void AfficherEtudiantsMajeurs()
+    {
+        foreach (Student etudiant in Student)
+        {
+            if (etudiant.EstMajeur())
+            {
+                WriteLine(etudiant.Prenom + " " + etudiant.Nom);
+            }
+        }
+    }
+}
+
+
+//Collection et Type génériques
+
+public class Pile<T>
+{
+    private List<T> list;
+
+    public Pile()
+    {
+        list = new List<T>();
+    }
+
+    public void Push(T element)
+    {
+        list.Add(element);
+    }
+
+    public T Pop()
+    {
+        T element = list[0];
+        list.RemoveAt(0);
+        return element;
+    }
+
+    public int Count()
+    {
+        return list.Count;
+    }
+}
+
+
+public class File<T>
+{
+    private List<T> list;
+
+    public File()
+    {
+        list = new List<T>();
+    }
+
+    public void Enqueue(T element)
+    {
+        list.Add(element);
+    }
+
+    public T Dequeue()
+    {
+        T element = list[0];
+        list.RemoveAt(0);
+        return element;
+    }
+
+    public int Count()
+    {
+        return list.Count;
+    }
+}
+
+
+public class Dictionnaire<TKey, TValue>
+{
+    private Dictionary<TKey, TValue> dictionary;
+
+    public Dictionnaire()
+    {
+        dictionary = new Dictionary<TKey, TValue>();
+    }
+
+    public void Add(TKey key, TValue value)
+    {
+        dictionary.Add(key, value);
+    }
+
+    public TValue GetValue(TKey key)
+    {
+        return dictionary[key];
+    }
+
+    public int Count()
+    {
+        return dictionary.Count;
+    }
+}
+
+
