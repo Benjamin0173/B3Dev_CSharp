@@ -404,7 +404,6 @@ void Exercice10()
 
     List<int> values = GetValuesInOrder(dict2); 
 
-    WriteLine(values.Count);
 
 }
 
